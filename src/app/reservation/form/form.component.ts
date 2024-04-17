@@ -46,7 +46,7 @@ export class FormComponent implements OnInit {
     minCheckOut = this.tomorrowDate.toISOString().split('T')[0]
     private adultPrice = 0
     private childrenPrice = 0
-    message = 'Please choose a hotel from the menu above'
+    message = 'Please choose a hotel from the menu'
     total = 0
 
     reactiveForm = new FormGroup({
@@ -83,7 +83,7 @@ export class FormComponent implements OnInit {
 
     resetForm() {
         this.reactiveForm.reset(this.originalValues);
-        this.message = 'Please choose a hotel from the menu above';
+        this.message = 'Please choose a hotel from the menu';
         this.adultPrice = 0;
         this.childrenPrice = 0;
         this.total = 0
@@ -96,9 +96,9 @@ export class FormComponent implements OnInit {
             return
         }
 
-        const a = new Date(this.reactiveForm.get('from').value)
-        const b = new Date(this.reactiveForm.get('to').value)
-        const timeDiff = b.getTime() - a.getTime();
+        const dateFrom = new Date(this.reactiveForm.get('from').value)
+        const dateTo = new Date(this.reactiveForm.get('to').value)
+        const timeDiff = dateTo.getTime() - dateFrom.getTime();
         const diff = Math.ceil(timeDiff / (1000 * 3600 * 24))
         const adults = this.reactiveForm.get('adults')?.value;
         const children = this.reactiveForm.get('children')?.value;

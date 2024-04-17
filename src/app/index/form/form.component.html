@@ -11,8 +11,8 @@
            #number1Input ="ngModel"
            (focus)="resetInput1()">
     <div>
-        <small *ngIf="number1Input.errors?.['required'] && number1Input.touched">Number1 is required.</small>
-        <small *ngIf="number1Input.value && number1Input.invalid">Number1 has to be between -10 and 10.</small>
+        <small class="small1" id="noneItem1" *ngIf="number1Input.errors?.['required'] && number1Input.touched">Number1 is required.</small>
+        <small class="small1" id="invalidItem1" *ngIf="number1Input.value && number1Input.invalid">Number1 has to be between -10 and 10.</small>
     </div>
 
     <input type="number"
@@ -26,8 +26,8 @@
            #number2Input ="ngModel"
            (focus)="resetInput2()">
     <div>
-        <small *ngIf="number2Input.errors?.['required'] && number2Input.touched">Number2 is required.</small>
-        <small *ngIf="number2Input.value && number2Input.invalid">Number2 has to be between -10 and 10.</small>
+        <small class="small2" id="noneItem2" *ngIf="number2Input.errors?.['required'] && number2Input.touched">Number2 is required.</small>
+        <small class="small2" id="invalidItem2" *ngIf="number2Input.value && number2Input.invalid">Number2 has to be between -10 and 10.</small>
     </div>
 </div>
 
