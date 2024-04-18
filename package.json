@@ -10,7 +10,7 @@
     "cy:open:chrome": "cypress open --e2e --browser chrome",
     "cy:serve": "http-server dist/app/browser -a localhost -p 8080 --proxy http://localhost:8080?",
     "cy:run": "cypress run --headless --browser chrome",
-    "cy:ci": "start-server-and-test cy:serve http://127.0.0.1:8080 cy:run"
+    "cy:ci": "start-server-and-test cy:serve http://localhost:8080 cy:run"
   },
   "private": true,
   "dependencies": {
