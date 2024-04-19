@@ -13,7 +13,8 @@
                 <option value="Jumeirah">Five Jumeirah Village</option>
                 <option value="TRYP">TRYP by Wyndham Dubai</option>
             </select>
-            <div class="message p-2 mt-1 align-items-center" id="message">{{ message }}</div>
+            <div class="message p-2 mt-1 align-items-center fw-bold" style="color: blue" id="message">{{ message }}
+            </div>
         </div>
         <br>
         <div class="row">
@@ -51,7 +52,12 @@
                            (focus)="resetAdults()">
                     <div class="text-center">
                         <small class="text-danger text-center" style="font-weight: bold"
-                               *ngIf="reactiveForm.get('adults')?.invalid">It has to be between 1 and 40.</small>
+                               *ngIf="(reactiveForm.get('adults').value
+                               && reactiveForm.get('adults').invalid)
+                               ||
+                               (reactiveForm.get('adults').touched
+                               && reactiveForm.get('adults').invalid)">
+                                Between 1 and 40 required.</small>
                     </div>
                     <span class="select-arrow"></span>
                 </div>
@@ -66,7 +72,7 @@
                            (focus)="resetChildren()">
                     <div class="text-center">
                         <small class="text-danger" style="font-weight: bold"
-                               *ngIf="reactiveForm.get('children')?.invalid">It has to be between 0 and 40.</small>
+                               *ngIf="reactiveForm.get('children')?.invalid">Between 0 and 40 required.</small>
                     </div>
                     <span class="select-arrow"></span>
                 </div>
