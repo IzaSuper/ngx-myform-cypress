@@ -1,7 +1,8 @@
 <div class="bg-body p-4 mb-2 bg-color">
     <form id="form" [formGroup]="reactiveForm">
         <div class="d-grid mb-3">
-            <button class="btn btn-secondary btn-lg"><a routerLink="/" style="color: white">Back to main</a></button>
+            <a routerLink="/" style="color: white" class="btn btn-secondary btn-lg" role="button" id="back">
+                Back to main</a>
         </div>
         <div class="form-group">
             <label class="form-label fw-bolder mb-1 ms-2" for="hotels">Your Destination</label>
@@ -49,15 +50,12 @@
                            id="adults"
                            class="form-control"
                            formControlName="adults"
-                           (focus)="resetAdults()">
+                           (focus)="resetAdults()"
+                           (keydown)="restrictZero($event)">
                     <div class="text-center">
                         <small class="text-danger text-center" style="font-weight: bold"
-                               *ngIf="(reactiveForm.get('adults').value
-                               && reactiveForm.get('adults').invalid)
-                               ||
-                               (reactiveForm.get('adults').touched
-                               && reactiveForm.get('adults').invalid)">
-                                Between 1 and 40 required.</small>
+                        *ngIf="(reactiveForm.get('adults').invalid && (reactiveForm.get('adults').touched || reactiveForm.get('adults').dirty))">
+                            Between 1 and 40 required.</small>
                     </div>
                     <span class="select-arrow"></span>
                 </div>
@@ -69,10 +67,11 @@
                            id="children"
                            class="form-control"
                            formControlName="children"
-                           (focus)="resetChildren()">
+                           (focus)="resetChildren()"
+                           (keydown)="restrictZero($event)">
                     <div class="text-center">
                         <small class="text-danger" style="font-weight: bold"
-                               *ngIf="reactiveForm.get('children')?.invalid">Between 0 and 40 required.</small>
+                               *ngIf="reactiveForm.get('children')?.invalid">Between 1 and 40 required.</small>
                     </div>
                     <span class="select-arrow"></span>
                 </div>
@@ -83,10 +82,10 @@
                     [disabled]="!(reactiveForm.valid)">
                 {{ reactiveForm.valid ? 'Total cost is ' + total + '$' : 'Check total cost' }}
             </button>
-            <button class="btn btn-success btn-lg" (click)="createLink()"
-                    [disabled]="!(reactiveForm.get('hotel').value)">
-                Check selected hotel
-            </button>
+            <a href="{{createLink()}}" target="_blank"
+               style="color: white" class="btn btn-success btn-lg" role="button"
+               [class.disabled]="!(reactiveForm.get('hotel').value)" id="check">
+                Check selected hotel</a>
             <button class="btn btn-success btn-lg" id="clear" (click)="resetForm()">Clear parameters</button>
         </div>
     </form>

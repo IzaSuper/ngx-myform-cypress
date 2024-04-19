@@ -39,6 +39,7 @@ export class FormComponent implements OnInit {
         "Jumeirah": "hotel/ae/sky-villa-penthouse-five-jvc.en-gb.html",
         "TRYP": "hotel/ae/tryp-by-wyndham-dubai.en-gb.html"
     }
+    hotelUrl = ''
     selectedHotel: any = ''
     private currentDate = new Date()
     today = this.currentDate.toISOString().split('T')[0]
@@ -81,12 +82,19 @@ export class FormComponent implements OnInit {
         })
     }
 
+    restrictZero(event:any){
+        if(event.target.value.length === 0 && event.key === '0') {
+            event.preventDefault();
+        }
+    }
+
     resetForm() {
         this.reactiveForm.reset(this.originalValues);
         this.message = 'Please choose a hotel from the menu';
         this.adultPrice = 0;
         this.childrenPrice = 0;
         this.total = 0
+        this.hotelUrl = ''
     }
 
     private calculateTotal() {
@@ -113,12 +121,12 @@ export class FormComponent implements OnInit {
         this.reactiveForm.get('children')?.setValue(null);
     }
 
-    createLink(): void {
+    createLink(): string {
         if (this.selectedHotel) {
             const baseUrl = "//www.booking.com/"
-            const hotelUrl = baseUrl + this.hotelMap[this.selectedHotel]
-            window.open(hotelUrl, '_blank')
+            this.hotelUrl = baseUrl + this.hotelMap[this.selectedHotel]
         }
+        return this.hotelUrl
     }
 }
 
