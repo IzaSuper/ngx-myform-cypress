@@ -1,3 +1,13 @@
+This repo contains two forms with Angular routing. 
+First - template form - "Create an array" and second - reactive form - "Check and make your reservation". 
+I have added Cypress tests with GitHub CI/CD.
+You can visit superczynska.com to check the result of my work. 
+
+
+
+
+
+
 # app
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.2.
